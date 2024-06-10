@@ -1,0 +1,414 @@
+ <!-- Start settings tab-pane -->
+ <div class="tab-pane" id="pills-setting" role="tabpanel" aria-labelledby="pills-setting-tab">
+    <!-- Start Settings content -->
+    <div>
+        <div class="px-4 pt-4">
+            <h4 class="mb-0">Settings</h4>
+        </div>
+
+        <div class="text-center border-bottom p-4">
+            <div class="mb-4 profile-user">
+                <img [src]="user.profileName" class="rounded-circle avatar-lg img-thumbnail" alt="">
+                <button type="button" data-bs-toggle="modal" (click)="setDataForUpdate()"    data-bs-target="#addContact-exampleModal-profile" class="btn btn-light bg-light avatar-xs p-0 rounded-circle profile-photo-edit" >
+                    <i class="ri-pencil-fill"></i>
+                </button>
+            </div>  
+
+            <h5 class="font-size-16 mb-1 text-truncate">{{user.userName}}</h5>
+            <div class="dropdown d-inline-block mb-1">
+                <a class="text-muted dropdown-toggle pb-1 d-block" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Available <i class="mdi mdi-chevron-down"></i>
+                </a>
+
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Available</a>
+                  <a class="dropdown-item" href="#">Busy</a>
+                </div>
+            </div>
+        </div>
+        <!-- End profile user -->
+
+        <!-- Start User profile description -->
+        <div class="p-4 user-profile-desc" data-simplebar>        
+            <div id="settingprofile" class="accordion">
+                <div class="accordion-item card border mb-2">
+                    <div class="accordion-header" id="personalinfo1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#personalinfo" aria-expanded="true" aria-controls="personalinfo">
+                            <h5 class="font-size-14 m-0">Personal Info</h5>
+                        </button>
+                    </div>
+                    <div id="personalinfo" class="accordion-collapse collapse show" aria-labelledby="personalinfo1" data-bs-parent="#settingprofile">
+                        <div class="accordion-body">
+                            <div class="float-end">
+                                <a  data-bs-toggle="modal"class="btn btn-light btn-sm"class="ri-edit-fill me-1 ms-0 align-middle"
+                                (click)="setDataForUpdate()"    data-bs-target="#addContact-exampleModal" class="ri-pencil-fill"></a>
+                                <!-- <button type="button" class="btn btn-light btn-sm"><i class="ri-edit-fill me-1 ms-0 align-middle"></i> Edit</button> -->
+                            </div>
+
+                            <div>
+                                <p class="text-muted mb-1">Name</p>
+                                <h5 class="font-size-14">{{user.userName}}</h5>
+                            </div>
+
+                            <div class="mt-4">
+                                <p class="text-muted mb-1">Email</p>
+                                <h5 class="font-size-14">{{user.email}}</h5>
+                            </div>
+                            <div class="float-end">
+                                <a  data-bs-toggle="modal"class="btn btn-light btn-sm"class="ri-edit-fill me-1 ms-0 align-middle"
+                                (click)="setDataForUpdate()"    data-bs-target="#addContact-exampleModal-phone" class="ri-pencil-fill"></a>
+                                <!-- <button type="button" class="btn btn-light btn-sm"><i class="ri-edit-fill me-1 ms-0 align-middle"></i> Edit</button> -->
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-muted mb-1">PhoneNumber</p>
+                                <h5 class="font-size-14">{{user.phoneNumber}}</h5>
+                            </div>
+                            <div class="float-end">
+                                <a  data-bs-toggle="modal"class="btn btn-light btn-sm"class="ri-edit-fill me-1 ms-0 align-middle"
+                                (click)="setDataForUpdate()"    data-bs-target="#addContact-exampleModal-location" class="ri-pencil-fill"></a>
+                                <!-- <button type="button" class="btn btn-light btn-sm"><i class="ri-edit-fill me-1 ms-0 align-middle"></i> Edit</button> -->
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-muted mb-1">Location</p>
+                                <h5 class="font-size-14 mb-0">{{user.location}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end personal info card -->
+
+                <div class="accordion-item card border mb-2">
+                    <div class="accordion-header" id="privacy1">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacy" aria-expanded="false" aria-controls="privacy">
+                            <h5 class="font-size-14 m-0">Privacy</h5>
+                        </button>
+                    </div>
+                    <div id="privacy" class="accordion-collapse collapse" aria-labelledby="privacy1" data-bs-parent="#settingprofile">
+                        <div class="accordion-body">
+                            <div class="py-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <h5 class="font-size-13 mb-0 text-truncate">Profile photo</h5>
+                                    </div>
+                                    <div class="dropdown ms-2 me-0">
+                                        <button class="btn btn-light btn-sm dropdown-toggle w-sm" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Everyone <i class="mdi mdi-chevron-down"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">Everyone</a>
+                                            <a class="dropdown-item" href="#">selected</a>
+                                            <a class="dropdown-item" href="#">Nobody</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-3 border-top">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <h5 class="font-size-13 mb-0 text-truncate">Last seen</h5>
+
+                                    </div>
+                                    <div class="ms-2 me-0">
+                                        <div class="form-check form-switch">
+                                            <input type="checkbox" class="form-check-input" id="privacy-lastseenSwitch" checked>
+                                            <label class="form-check-label" for="privacy-lastseenSwitch"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="py-3 border-top">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <h5 class="font-size-13 mb-0 text-truncate">Status</h5>
+                                    </div>
+                                    <div class="dropdown ms-2 me-0">
+                                        <button class="btn btn-light btn-sm dropdown-toggle w-sm" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Everyone <i class="mdi mdi-chevron-down"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">Everyone</a>
+                                            <a class="dropdown-item" href="#">selected</a>
+                                            <a class="dropdown-item" href="#">Nobody</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="py-3 border-top">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <h5 class="font-size-13 mb-0 text-truncate">Read receipts</h5>
+                                    </div>
+                                    <div class="ms-2 me-0">
+                                        <div class="form-check form-switch">
+                                            <input type="checkbox" class="form-check-input" id="privacy-readreceiptSwitch" checked>
+                                            <label class="form-check-label" for="privacy-readreceiptSwitch"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="py-3 border-top">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <h5 class="font-size-13 mb-0 text-truncate">Groups</h5>
+
+                                    </div>
+                                    <div class="dropdown ms-2 me-0">
+                                        <button class="btn btn-light btn-sm dropdown-toggle w-sm" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Everyone <i class="mdi mdi-chevron-down"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">Everyone</a>
+                                            <a class="dropdown-item" href="#">selected</a>
+                                            <a class="dropdown-item" href="#">Nobody</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end privacy card -->
+
+                <div class="accordion-item card border mb-2">
+                    <div class="accordion-header" id="security1">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#security" aria-expanded="false" aria-controls="security">
+                            <h5 class="font-size-14 m-0">Security</h5>
+                        </button>
+                    </div>
+                    <div id="security" class="accordion-collapse collapse" aria-labelledby="security1" data-bs-parent="#settingprofile">
+                        <div class="accordion-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <h5 class="font-size-13 mb-0 text-truncate">Show security notification</h5>
+
+                                </div>
+                                <div class="ms-2 me-0">
+                                    <div class="form-check form-switch">
+                                        <input type="checkbox" class="form-check-input" id="security-notificationswitch">
+                                        <label class="form-check-label" for="security-notificationswitch"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- end security card -->
+
+                <div class="accordion-item card border mb-2">
+                    <div class="accordion-header" id="help1">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <h5 class="font-size-14 m-0"> Help</h5>
+                        </button>
+                    </div>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="help1" data-bs-parent="#settingprofile">
+                        <div class="accordion-body">
+                            <div class="py-3">
+                                <h5 class="font-size-13 mb-0"><a href="#" class="text-body d-block">FAQs</a></h5>
+                            </div>
+                            <div class="py-3 border-top">
+                                <h5 class="font-size-13 mb-0"><a href="#" class="text-body d-block">Contact</a></h5>
+                            </div>
+                            <div class="py-3 border-top">
+                                <h5 class="font-size-13 mb-0"><a href="#" class="text-body d-block">Terms & Privacy policy</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end profile-setting-accordion -->
+        </div>
+        <!-- End User profile description -->
+    </div>
+    <!-- Start Settings content -->
+
+
+</div>
+
+<!-- End settings tab-pane -->
+ <!-- Start Edit Profile Modal -->
+ <div class="modal fade" id="addContact-exampleModal" tabindex="-1" role="dialog"
+ aria-labelledby="addContact-exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+     <div class="modal-content">
+         <div class="modal-header">
+           
+             <button type="button" class="btn-close" id="add" data-bs-dismiss="modal" aria-label="Close">
+             </button>
+         </div>
+         <div class="modal-body p-4">
+             
+             <form [formGroup]="myForm" (ngSubmit)="updateUser()"  >
+<!-- {{user|json}} -->
+                 <div class="mb-3">
+                     <label for="addcontactemail-input" class="form-label">Name</label>
+                     <input type="text" class="form-control" id="addcontactemail-input" value="user.userName"
+                  name="userName" formControlName="userName"      placeholder="Enter Name" [(ngModel)]="userRequest.userName">
+                  <span class="text-danger"
+                  *ngIf="(myForm.get('userName')?.touched ) && myForm.get('userName')?.hasError('required')">
+                  userName Is Required.
+              </span>
+              <span class="text-danger"
+                  *ngIf="(myForm.get('userName')?.touched ) && myForm.get('userName')?.hasError('min')">
+                  userName length should be greater than 3.
+              </span>
+              <span class="text-danger"
+                  *ngIf="(myForm.get('userName')?.touched ) && myForm.get('userName')?.hasError('max')">
+                  userName length should be smaller than 25.
+              </span>
+                </div>
+                 
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-primary"  [disabled]="myForm.invalid" >Save</button>
+                 </div>
+             </form>
+         </div>
+        
+     </div>
+ </div>
+</div>
+<!-- End Edit Profile Modal -->
+<div class="modal fade" id="addContact-exampleModal-phone" tabindex="-1" role="dialog"
+ aria-labelledby="addContact-exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+     <div class="modal-content">
+         <div class="modal-header">
+           
+             <button type="button" class="btn-close" id="add" data-bs-dismiss="modal" aria-label="Close">
+             </button>
+         </div>
+         <div class="modal-body p-4">
+             
+             <form [formGroup]="myPhoneNumber"  (ngSubmit)="updateUser()"  >
+<!-- {{user|json}} -->
+<div class="mb-3">
+    <label for="addcontactemail-input" class="form-label">PhoneNumber</label>
+    <input type="text" class="form-control" id="addcontactemail-input" value="user.phoneNumber"
+ name="phoneNumber"    formControlName="phoneNumber"    placeholder="Enter phoneNumber" [(ngModel)]="userRequest.phoneNumber">
+ <span class="text-danger"
+ *ngIf="(myPhoneNumber.get('phoneNumber')?.touched ) && myPhoneNumber.get('phoneNumber')?.hasError('required')">
+ phoneNumber Is Required.
+</span>
+<span class="text-danger"
+ *ngIf="(myPhoneNumber.get('phoneNumber')?.touched ) && myPhoneNumber.get('phoneNumber')?.hasError('phoneNumber')">
+ phoneNumber length should be greater than 10.
+</span>
+<span class="text-danger"
+ *ngIf="(myPhoneNumber.get('phoneNumber')?.touched ) && myPhoneNumber.get('phoneNumber')?.hasError('phone')">
+ phoneNumber length should be smaller than 11.
+</span>
+<span class="text-danger"
+*ngIf="(myPhoneNumber.get('phoneNumber')?.touched ) && myPhoneNumber.get('phoneNumber')?.hasError('phone')">
+phoneNumber Is Invalid.
+</span>
+<span class="text-danger"
+*ngIf="(myPhoneNumber.get('phoneNumber')?.touched ) && myPhoneNumber.get('phoneNumber')?.hasError('phone')">
+phoneNumber no above 5.
+</span>
+</div>            
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-primary"data-bs-dismiss="modal" [disabled]="myPhoneNumber.invalid" >Save</button>
+                 </div>
+             </form>
+         </div>
+        
+     </div>
+ </div>
+</div>
+<!-- End Edit Profile Modal -->
+
+
+   <!-- Start Edit Profile Modal -->
+   <div class="modal fade" id="addContact-exampleModal-profile" tabindex="-1" role="dialog"
+   aria-labelledby="addContact-exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h5 class="modal-title font-size-16" id="addContact-exampleModalLabel"> Profile</h5>
+               <button type="button" class="btn-close" id="add" data-bs-dismiss="modal" aria-label="Close">
+               </button>
+           </div>
+           <div class="modal-body p-4">
+               
+               <form  (ngSubmit)="updateUser()" >
+                   <div class="text-center p-4 border-bottom">
+                      
+                       <div class="mb-4 profile-user">
+                        
+                           <img [src]="userRequest.profileName"
+                               class="rounded-circle avatar-lg img-thumbnail" alt="" id="file" (click)="openFile(file)">
+                           <button type="button"
+                               class="btn btn-light bg-light avatar-xs p-0 rounded-circle profile-photo-edit">
+                               <i (click)="openFileInput('file')"  class="ri-pencil-fill"></i>
+                           </button>
+                       </div>
+                       <label class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top"
+                           title="Attached File">
+                           <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top"
+                               title="Attached File">
+                           </li>
+                           <input type="file"  id="file2" name="profileNamedata"  #file  class="d-none" aria-hidden="true" (change)="selectFile($event)" accept="image/*">
+           
+                           <!-- <input type="file" (change)="changeImage($event)" style="display: none;" id="file" /> -->
+                       </label>
+    
+                   </div>
+
+                                    <div class="modal-footer">
+                       <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
+                       <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Save</button>
+                   </div>
+               </form>
+           </div>
+          
+       </div>
+   </div>
+</div>
+
+<div class="modal fade" id="addContact-exampleModal-location" tabindex="-1" role="dialog"
+ aria-labelledby="addContact-exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+     <div class="modal-content">
+         <div class="modal-header">
+           
+             <button type="button" class="btn-close" id="add" data-bs-dismiss="modal" aria-label="Close">
+             </button>
+         </div>
+         <div class="modal-body p-4">
+             
+             <form [formGroup]="myLocation" (ngSubmit)="updateUser()"  >
+
+                <div class="mb-3">
+                    <label for="addcontactemail-input" class="form-label">Location</label>
+                    <input type="text" class="form-control" id="addcontactemail-input"
+               value="user.location" name="location"  formControlName="location"       placeholder="Enter Location" [(ngModel)]="userRequest.location">
+               <span class="text-danger"
+               *ngIf="(myLocation.get('location')?.touched ) && myLocation.get('location')?.hasError('required')">
+               location Is Required.
+           </span>
+           <span class="text-danger"
+               *ngIf="(myLocation.get('location')?.touched ) && myLocation.get('location')?.hasError('min')">
+               location length should be greater than 3.
+           </span>
+           <span class="text-danger"
+               *ngIf="(myLocation.get('location')?.touched ) && myLocation.get('location')?.hasError('max')">
+               location length should be smaller than 25.
+           </span>  
+           
+                </div>            
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-primary" [disabled]="myLocation.invalid" data-bs-dismiss="modal" >Save</button>
+                 </div>
+             </form>
+         </div>
+        
+     </div>
+ </div>
+</div>

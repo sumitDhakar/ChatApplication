@@ -1,0 +1,65 @@
+
+
+<div class="account-pages my-5 pt-sm-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="text-center mb-4">
+                    <a href="index.html" class="auth-logo mb-5 d-block">
+                        <img src="assets/images/logo-dark.png" alt="" height="30" class="logo logo-dark">
+                        <img src="assets/images/logo-light.png" alt="" height="30" class="logo logo-light">
+                    </a>
+
+                    <h4>Verification  </h4>
+                    <p class="text-muted mb-4">Otp sent to {{getEmail()}}</p>
+                    
+                </div>
+
+                <div class="card">
+                    <div class="card-body p-4">
+                        <div class="p-3">
+                            <form (ngSubmit)="verify()">
+
+
+                                <div class="mb-4 text-center">
+                                  
+                                    <label class="form-label">Otp</label>
+                                    <div class="input-group mb-3 bg-light-subtle rounded-3">
+                                        <span class="input-group-text text-muted" id="basic-addon4">
+                                            <i class="ri-lock-2-line"></i>
+                                        </span>
+                                        <input type="number" name="otp" [(ngModel)]="verificationRequest.otp" class="form-control form-control-lg border-light bg-light-subtle" placeholder="Enter Otp here" aria-label="Enter Password" aria-describedby="basic-addon4">
+                                        
+                                    </div>
+                                </div>
+
+                             
+                                <div class="d-grid">
+                                    <button class="btn btn-primary waves-effect waves-light" type="submit">Verify</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 text-center">
+                    <p>Didn't received yet ? <a  class="fw-medium text-primary" (click)="resend()"> Resend Otp.
+                       </a> </p>
+                    <p>© <script>document.write(new Date().getFullYear())</script> Chatvia. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end account-pages -->
+
+<!-- 
+<form action="" class="mt-5">
+  <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(1)' maxlength=1 >
+  <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(2)' maxlength=1 >
+  <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(3)' maxlength=1 >
+  <input class="otp" type="text" oninput='digitValidate(this)'onkeyup='tabChange(4)' maxlength=1 >
+</form>
+<hr class="mt-4">
+<button class='btn btn-primary btn-block mt-4 mb-4 customBtn'>Verify</button> -->

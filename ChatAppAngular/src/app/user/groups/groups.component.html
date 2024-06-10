@@ -1,0 +1,303 @@
+  <!-- Start groups tab-pane -->
+  <div class="tab-pane" id="pills-groups" role="tabpanel" aria-labelledby="pills-groups-tab">
+    <!-- Start Groups content -->
+    <div>
+        <div class="p-4">
+            <div class="user-chat-nav float-end">
+                <div  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create group">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-link text-decoration-none text-muted font-size-18 py-0" data-bs-toggle="modal" data-bs-target="#addgroup-exampleModal">
+                        <i class="ri-group-line me-1 ms-0"></i>
+                    </button>
+                </div>
+
+            </div>
+            <h4 class="mb-4">Groups</h4>
+
+            <!-- Start add group Modal -->
+            <div class="modal fade" id="addgroup-exampleModal" tabindex="-1" role="dialog" aria-labelledby="addgroup-exampleModalLabel" aria-hidden="false">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title font-size-16" id="addgroup-exampleModalLabel">Create New Group</h5>
+                            <button type="button" class="btn-close" id="add" data-bs-dismiss="modal" aria-label="Close">
+                            </button>
+                            </div>
+                        <div class="modal-body p-4">
+                            <form  (ngSubmit)="createGroup()">
+
+                                <div class="text-center p-4 border-bottom">
+                      
+                                    <div class="mb-4 profile-user">
+                                     
+                                        <img [src]="groupChat.profileGroup"
+                                            class="rounded-circle avatar-lg img-thumbnail" alt="" id="file" (click)="openFile(file)">
+                                        <button type="button"
+                                            class="btn btn-light bg-light avatar-xs p-0 rounded-circle profile-photo-edit">
+                                            <i (click)="openFileInput('file')"  class="ri-pencil-fill"></i>
+                                        </button>
+                                    </div>
+                                    <label class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Attached File">
+                                        <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Attached File">
+                                        </li>
+                                        <input type="file"  id="file2" name="profileNamedata"  #file  class="d-none" aria-hidden="true" (change)="selectFile($event)" accept="image/*">
+                        
+                                        <!-- <input type="file" (change)="changeImage($event)" style="display: none;" id="file" /> -->
+                                    </label>
+                 
+                                </div>
+             
+
+                                <div class="mb-4">
+                                    <label for="addgroupname-input" class="form-label">Group Name</label>
+                                    <input type="text" class="form-control" value="groupChat.groupName"  name="name" id="addgroupname-input" placeholder="Enter Group Name" [(ngModel)]="groupChat.groupName">
+                                </div>
+
+
+
+                                <div class="mb-4">
+                                    <label class="form-label">Group Members</label>
+                                    <div class="mb-3">
+                                        <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#groupmembercollapse" aria-expanded="false" aria-controls="groupmembercollapse">
+                                            Select Members
+                                        </button>
+                                    </div>
+
+                                    <div class="collapse" id="groupmembercollapse">
+                                        <div class="card border">
+
+                                             <!-- Start contact lists -->
+       
+                                            <div class="card-header">
+                                                <h5 class="font-size-15 mb-0">Contacts</h5>
+                                            </div>
+                                            <div class="card-body p-2">
+                                                <div data-simplebar style="max-height: 150px;">
+                                                    <div  *ngFor="let group of allContactsOfCurrentUser|keyvalue">
+                                                        <div class="p-3 fw-bold text-primary">
+                                                            {{ group.key }} 
+                                                        </div>
+
+                                                        <ul class="list-unstyled contact-list"  *ngIf="group.value">
+                                                            <li *ngFor="let user of group.value">
+                                                                <div class="form-check">
+                                                                 
+                                                            <input type="checkbox" [value]="user" name="members" class="form-check-input" id="{{ 'memberCheck' + user.id }}" [(ngModel)]="user.isSelected" >
+                                                        <label class="form-check-label" [for]="'memberCheck' + user.id">{{ user.userName }}</label>
+                                                            </div>
+                                                            </li>
+                                                        
+                                                        </ul>
+                                                    </div>
+
+                                              
+                                                </div>
+                                            </div>
+                    
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="addgroupdescription-input" class="form-label">Description</label>
+                                    <textarea class="form-control" value="group.description"  name="description" id="addgroupdescription-input" rows="3" placeholder="Enter Description" [(ngModel)]="groupChat.description"></textarea>
+                                </div>
+
+                                   <div class="modal-footer">
+                                    <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" >Create Groups</button>
+                                </div>
+                            </form>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <!-- End add group Modal -->
+
+            <div class="search-box chat-search-box">            
+                <div class="input-group rounded-3">
+                    <span class="input-group-text text-muted bg-light pe-1 ps-3" id="basic-addon1">
+                        <i class="ri-search-line search-icon font-size-18"></i>
+                    </span>
+                    <input type="text" name="seachValue" (keyup)="searchGroup()" [(ngModel)]="searchValue" class="form-control" id="addcontactemail-input"
+                    placeholder="search user by userName or email">   </div> 
+            </div> <!-- Search Box-->
+        </div>
+
+        <!-- Start chat-group-list -->
+        <div class="p-4 chat-message-list chat-group-list" data-simplebar>
+            <div *ngFor="let group of allGroupOfCurrentUser|keyvalue">
+                <div class="chat-user-img me-3 ms-0">
+                    <div class="avatar-xs">
+                        <span class="avatar-title rounded-circle bg-primary-subtle text-primary">
+                        {{ group.key }}
+                        </span>
+                    </div>
+                   
+                </div>
+
+                <ul class="list-unstyled contact-list" *ngIf="group.value">
+                    <li *ngFor="let user of group.value">
+  
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1" (click)="navigateToConversation(user.conversationId)" >
+                                <h5 class="font-size-14 m-0">{{ user.groupName }}</h5>
+                            </div>
+                            <!-- <div class="dropdown">
+                                <a href="#" class="text-muted dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="ri-more-2-fill"></i>
+                                </a> -->
+                                <!-- <div class="dropdown-menu dropdown-menu-end">
+                                    <a class="dropdown-item" href="#">Share <i
+                                            class="ri-share-line float-end text-muted"></i></a>
+                                    <a class="dropdown-item" href="#">Block <i
+                                            class="ri-forbid-line float-end text-muted"></i></a>
+                                    <a class="dropdown-item" (click)="deleteContacts(user.id)">Remove <i
+                                            class="ri-delete-bin-line float-end text-muted"></i></a>
+                                </div> -->
+                            <!-- </div> -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div> 
+        <!-- End chat-group-list -->
+    </div>
+    <!-- End Groups content -->
+</div>
+<!-- End groups tab-pane -->
+
+
+ <!-- Start add group Modal -->
+ <div class="modal fade" id="addgroup-exampleModal-eadit" tabindex="-1" role="dialog" aria-labelledby="addgroup-exampleModalLabel" aria-hidden="false">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-size-16" id="addgroup-exampleModalLabel">Update Group</h5>
+                <button type="button" class="btn-close" id="add" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+                </div>
+            <div class="modal-body p-4">
+                <form  (ngSubmit)=" updateGroup()">
+
+                    <div class="text-center p-4 border-bottom">
+                      
+                        <div class="mb-4 profile-user">
+                      
+                            <img [src]="groupChat.profileGroup"
+                                class="rounded-circle avatar-lg img-thumbnail" alt="" id="file" (click)="openFile(file)">
+                            <button type="button"
+                                class="btn btn-light bg-light avatar-xs p-0 rounded-circle profile-photo-edit">
+                                <i   class="ri-pencil-fill"></i>
+                            </button>
+                        </div>
+                        <label class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Attached File">
+                            <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Attached File">
+                            </li>
+                            <input type="file"  id="file2" name="profileNamedata"  #file  class="d-none" aria-hidden="true" accept="image/*">
+            
+                            <!-- <input type="file" (change)="changeImage($event)" style="display: none;" id="file" /> -->
+                        </label>
+     
+                    </div>
+                    <div class="mb-4">
+                        <label for="addgroupname-input" class="form-label">Group Name</label>
+                        <input type="text" class="form-control"   name="groupName" id="addgroupname-input" placeholder="Enter Group Name" [(ngModel)]="groupChat.groupName">
+                    </div>
+
+
+                   
+                    
+
+                    <div class="mb-3">
+                        <label for="addgroupdescription-input" class="form-label">Description</label>
+                        <textarea class="form-control" value="group.description"  name="description" id="addgroupdescription-input" rows="3" placeholder="Enter Description" [(ngModel)]="groupChat.description"></textarea>
+                    </div>
+
+                       <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" >Create Groups</button>
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div>
+<!-- End add group Modal -->
+
+
+            <!-- Start add group Modal -->
+            <div class="modal fade" id="addgroup-exampleModal-Members" tabindex="-1" role="dialog" aria-labelledby="addgroup-exampleModalLabel" aria-hidden="false">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title font-size-16" id="addgroup-exampleModalLabel">Create New Group</h5>
+                            <button type="button" class="btn-close" id="add" data-bs-dismiss="modal" aria-label="Close">
+                            </button>
+                            </div>
+                        <div class="modal-body p-4">
+                            <form  (ngSubmit)="createGroup()">
+                                
+                                <div class="mb-4">
+                                    <label class="form-label">Group Members</label>
+                                    <div class="mb-3">
+                                        <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#groupmembercollapse" aria-expanded="false" aria-controls="groupmembercollapse">
+                                            Select Members
+                                        </button>
+                                    </div>
+
+                                    <div class="collapse" id="groupmembercollapse">
+                                        <div class="card border">
+
+                                             <!-- Start contact lists -->
+       
+                                            <div class="card-header">
+                                                <h5 class="font-size-15 mb-0">Contacts</h5>
+                                            </div>
+                                            <div class="card-body p-2">
+                                                <div data-simplebar style="max-height: 150px;">
+                                                    <div  *ngFor="let group of allContactsOfCurrentUser|keyvalue">
+                                                        <div class="p-3 fw-bold text-primary">
+                                                            {{ group.key }} 
+                                                        </div>
+
+                                                        <ul class="list-unstyled contact-list"  *ngIf="group.value">
+                                                            <li *ngFor="let user of group.value">
+                                                                <div class="form-check">
+                                                                 
+                                                            <input type="checkbox" [value]="user" name="members" class="form-check-input" id="{{ 'memberCheck' + user.id }}" [(ngModel)]="user.isSelected" >
+                                                        <label class="form-check-label" [for]="'memberCheck' + user.id">{{ user.userName }}</label>
+                                                            </div>
+                                                            </li>
+                                                        
+                                                        </ul>
+                                                    </div>
+
+                                              
+                                                </div>
+                                            </div>
+                    
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+                                   <div class="modal-footer">
+                                    <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" >Add Members</button>
+                                </div>
+                            </form>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <!-- End add group Modal -->

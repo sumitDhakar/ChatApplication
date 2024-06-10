@@ -1,0 +1,43 @@
+.attachement {
+    display: none;
+}
+#myFileData{
+    padding: 2%;
+  }
+// .d-lg-flex {
+//     display: -webkit-box!important;
+//     display: -ms-flexbox!important;
+//     display: flex!important;
+// }
+.w-180 {
+    width: 180% !important;
+}
+
+@media screen and (min-width: 992px) {
+    .d-lg-flex {
+        display: -webkit-box !important;
+        display: -ms-flexbox !important;
+        display: flex !important;
+    }
+
+    .user-chat{
+        width: 1036px;
+    }
+
+}
+
+.right {
+    background-color: 7269ef !important;
+}
+
+.file_select_background {
+    height: 207px;
+    background-color: #d7d7d73d;
+    border-radius: 12px;
+}
+
+.file_select {
+    position: absolute;
+    width: 95%;
+    bottom: 18px;
+}

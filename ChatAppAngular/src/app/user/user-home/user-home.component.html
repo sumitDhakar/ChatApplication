@@ -1,0 +1,26 @@
+
+<div class="layout-wrapper d-flex">
+    <app-sidebar></app-sidebar>
+    <!-- start chat-leftsidebar -->
+    <div class="chat-leftsidebar me-lg-1 ms-lg-0">
+        <!-- start  tab content-->
+        <div class="tab-content">
+            <!-- <app-chat-side></app-chat-side> -->
+            <!-- <app-profile></app-profile> -->
+            <!-- <app-chats></app-chats> -->
+            <router-outlet name="chatside"></router-outlet>
+        </div>
+        <!-- end tab content -->
+    </div>
+    <!-- end chat-leftsidebar -->
+
+    <!-- Start User chat -->
+    <!-- <div class="user-chat w-100 overflow-hidden">
+        <div class="d-lg-flex"> -->
+    <router-outlet name="convermain"></router-outlet>
+    <!-- <app-conversation></app-conversation> -->
+    <!-- </div>
+    </div> -->
+    <!-- End User chat -->
+
+</div>

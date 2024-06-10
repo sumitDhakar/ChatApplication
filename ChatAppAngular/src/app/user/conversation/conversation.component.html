@@ -1,0 +1,1003 @@
+<!-- Start User chat -->
+<div class="user-chat overflow-hidden">
+    <div class="d-lg-flex">
+        <!-- start chat conversation section -->
+        <div class="w-100 overflow-hidden position-relative" #di>
+            <div class="p-3 p-lg-4 border-bottom user-chat-topbar">
+                <div class="row align-items-center">
+                    <div class="col-sm-4 col-8">
+                        <div class="d-flex align-items-center">
+                            <div class="d-block d-lg-none me-2 ms-0">
+                                <a class="user-chat-remove text-muted font-size-16 p-2"><i
+                                        class="ri-arrow-left-s-line"></i></a>
+                            </div>
+                            <div class="me-3 ms-0">
+                                <img [src]="recieverUser.profileName" class="rounded-circle avatar-xs" alt="">
+                            </div>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <h5 class="font-size-16 mb-0 text-truncate"><a class="text-reset user-profile-show"
+                                        (click)="toggleProfile(true)">{{recieverUser.userName}}</a> <i
+                                        
+                                        [ngClass]="{'text-success': recieverUser.userStatus.isOnline, 'text-warning': !recieverUser.userStatus.isOnline}"
+                                        class="ri-record-circle-fill font-size-10 me-1 ms-0 d-inline-block"></i>
+                                </h5>
+                                <p class="mb-0"  *ngIf="(currentUser.userStatus.status === userStatus.TYPING)  ">
+                                     typing ...
+                                     
+                                 </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-4">
+                        <ul class="list-inline user-chat-nav text-end mb-0">
+                            <li class="list-inline-item">
+                                <div class="dropdown">
+                                    <button class="btn nav-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="ri-search-line"></i>
+                                    </button>
+                                    <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-md">
+                                        <div class="search-box p-2">
+                                            <input type="text" class="form-control bg-light border-0"
+                                                placeholder="Search..">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list-inline-item d-none d-lg-inline-block me-2 ms-0">
+                                <button type="button" class="btn nav-btn" data-bs-toggle="modal"
+                                    data-bs-target="#audiocallModal">
+                                    <i class="ri-phone-line"></i>
+                                </button>
+                            </li>
+
+                            <li class="list-inline-item d-none d-lg-inline-block me-2 ms-0">
+                                <button type="button" class="btn nav-btn" data-bs-toggle="modal"
+                                    data-bs-target="#videocallModal">
+                                    <i class="ri-vidicon-line"></i>
+                                </button>
+                            </li>
+
+                            <li class="list-inline-item d-none d-lg-inline-block me-2 ms-0">
+                                <button type="button" class="btn nav-btn user-profile-show">
+                                    <i class="ri-user-2-line"></i>
+                                </button>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <div class="dropdown">
+                                    <button class="btn nav-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="ri-more-fill"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a class="dropdown-item d-block d-lg-none user-profile-show" href="#">View
+                                            profile <i class="ri-user-2-line float-end text-muted"></i></a>
+                                        <a class="dropdown-item d-block d-lg-none" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#audiocallModal">Audio <i
+                                                class="ri-phone-line float-end text-muted"></i></a>
+                                        <a class="dropdown-item d-block d-lg-none" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#videocallModal">Video <i
+                                                class="ri-vidicon-line float-end text-muted"></i></a>
+                                        <a class="dropdown-item" href="#">Archive <i
+                                                class="ri-archive-line float-end text-muted"></i></a>
+                                        <a class="dropdown-item" href="#">Muted <i
+                                                class="ri-volume-mute-line float-end text-muted"></i></a>
+                                        <a class="dropdown-item" href="#">Delete <i
+                                                class="ri-delete-bin-line float-end text-muted"></i></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- end chat user head -->
+
+            <!-- start chat conversation -->
+
+
+            <div class="chat-conversation p-3 p-lg-4 " data-simplebar="init">
+                <ul class="list-unstyled mb-0 ">
+                    <li>
+
+                        <div class="text-center p-4 border-bottom">
+                            <div class="mb-4 profile-user">
+                                <img [src]="recieverUser.profileName" class="rounded-circle avatar-lg img-thumbnail"
+                                    alt="">
+
+                            </div>
+
+                            <label class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Attached File">
+                    <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Attached File">
+                    </li>
+                    <input type="file" style="display: none;" id="file1" />
+                    </label>
+
+                    <h5 class="font-size-16 mb-1 text-truncate">{{recieverUser.userName}}</h5>
+                    <p class="text-muted text-truncate mb-1"><i recieverUser.userStatus.isOnline
+                            [ngClass]="{'text-success': recieverUser.userStatus.isOnline, 'text-warning': !recieverUser.userStatus.isOnline}"
+                            class="ri-record-circle-fill font-size-10 me-1 ms-0 d-inline-block"></i>
+                        {{recieverUser.bio}}</p>
+
+            </div>
+            </li>
+
+
+
+            <!-- End profile user -->
+
+            <ul class="list-unstyled chat-list">
+                <div class="chats" *ngFor="let date of  messages | keyvalue">
+                    <li>
+                        <div class="chat-day-title">
+
+                            <span class="title">{{date.key | date:'d MMMM y'}}</span>
+                        </div>
+                    </li>
+
+                    <li *ngFor="let message of date.value" [ngClass]="{'right': message.sender === currentUserId}">
+                        <div class="conversation-list" *ngIf="message.message!='' ||(message.images!=null&&message.images.length>0)||(message.chatFiles!=null&&message.chatFiles.length>0 )">
+                            <div class="chat-avatar">
+                                <img [src]="(message.sender === currentUserId)?currentUser.profileName:recieverUser.profileName"
+                                    alt="{{ message.sender }}">
+                            </div>
+                            <div class="user-chat-content">
+                                <div class="card p-2 mb-2" *ngIf="(message.chatFiles!=null&&message.chatFiles.length>0 )">
+                                    <div class="d-flex flex-wrap align-items-center attached-file"
+                                        *ngFor="let fileData of message.chatFiles; let i = index">
+                                        <div class="avatar-sm me-3 ms-0 attached-file-avatar">
+                                            <div
+                                                class="avatar-title bg-primary-subtle text-primary rounded font-size-20">
+                                                <i class="ri-file-text-fill"></i>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <div class="text-start">
+                                                <h5 class="font-size-14 text-truncate mb-1">{{fileData.fileName}}</h5>
+                                                <p class="text-muted text-truncate font-size-13 mb-0">
+                                                    {{fileData.fileSize|fileSize}}
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                        <div class="ms-4 me-0">
+                                            <div class="d-flex gap-2 font-size-20 d-flex align-items-start">
+                                                <div>
+                                                    <a (click)="downloadFile(fileData.serverFileName,fileData.fileName,true)"
+                                                         class="fw-medium">
+                                                        <i class="ri-download-2-line"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-muted" href="#" role="button"
+                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <i class="ri-more-fill"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#addContact-exampleModal-location"
+                                                        (click)="copyTextToClipboard(message.message,'string')" >Share <i
+                                                                class="ri-share-line float-end text-muted"></i></a>
+                                                        <a class="dropdown-item" href="#">Delete <i
+                                                                class="ri-delete-bin-line float-end text-muted"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+
+                                <div class="ctext-wrap" *ngIf="(message.images!=null&&message.images.length>0)">
+
+                                    <div class="ctext-wrap-content">
+                                        <ul class="list-inline message-img  mb-0"
+                                            *ngFor="let image of message.images; let i = index">
+                                            <li class="list-inline-item message-img-list me-2 ms-0">
+                                                <div>
+                                                    <a class="popup-img d-inline-block m-1"
+                                                        [href]="image.serverFileName" [title]="image.fileName">
+                                                        <img [src]="image.serverFileName"
+                                                            alt="assets/images/small/img-1.jpg" class="rounded border">
+                                                    </a>
+                                                </div>
+                                                <div class="message-img-link">
+                                                    <ul class="list-inline mb-0">
+                                                        <li class="list-inline-item">
+                                                            <a (click)="downloadFile(image.serverFileName,image.fileName,true)"
+                                                                 class="fw-medium">
+                                                                <i class="ri-download-2-line"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-inline-item dropdown">
+                                                            <a class="dropdown-toggle" href="#" role="button"
+                                                                data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                                <i class="ri-more-fill"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" (click)="copyTextToClipboard(image.serverFileName,'image')">Copy <i
+                                                                        class="ri-file-copy-line float-end text-muted"></i></a>
+                                                                <!-- <a class="dropdown-item" href="#">Save <i
+                                                                        class="ri-save-line float-end text-muted"></i></a> -->
+                                                                <a class="dropdown-item" data-bs-toggle="modal"
+                                                                data-bs-target="#addContact-exampleModal-location"
+                                                                (click)="copyTextToClipboard(message.message,'string')">Forward <i
+                                                                        class="ri-chat-forward-line float-end text-muted"></i></a>
+                                                                <a class="dropdown-item" href="#">Delete <i
+                                                                        class="ri-delete-bin-line float-end text-muted"></i></a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <p *ngIf="(message.message==='')" class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span
+                                                 class="align-middle">{{message.sentAt| date:'h:mm a'}}</span></p>
+                                        </ul>
+
+                                    </div>
+
+                                    
+
+                                </div>
+                                <div class="ctext-wrap" *ngIf="(message.message!=='')">
+                                    <div class="ctext-wrap-content">
+                                        <p class="mb-0">{{ message.message }}</p>
+                                        <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span
+                                                class="align-middle">{{ message.sentAt| date:'h:mm a' }}</span></p>
+                                    </div>
+
+                                    <div class="dropdown align-self-start">
+                                        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="ri-more-2-fill"></i>
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" (click)="copyTextToClipboard(message.message,'string')">Copy
+                                                <i class="ri-file-copy-line float-end text-muted"></i></a>
+                                            <!-- <a class="dropdown-item" href="#">Save <i
+                                                    class="ri-save-line float-end text-muted"></i></a> -->
+
+
+                                            <a class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#addContact-exampleModal-location"
+                                                (click)="copyTextToClipboard(message.message,'string')">Forward <i
+                                                    class="ri-chat-forward-line float-end text-muted"></i></a>
+                                            <a class="dropdown-item" (click)="deleteMessages(message.id)">Delete <i
+                                                    class="ri-delete-bin-line float-end text-muted"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="conversation-name">{{ (message.sender ===
+                                    currentUserId)?currentUser.userName:recieverUser.userName }}</div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li *ngIf="(currentUser.userStatus.status === userStatus.TYPING)  ">
+                        <div class="conversation-list">
+                            <div class="chat-avatar">
+                                <img [src]="recieverUser.profileName" alt="recieverUser.userName ">
+                            </div>
+
+                            <div class="user-chat-content">
+                                <div class="ctext-wrap">
+                                    <div class="ctext-wrap-content">
+                                        <p class="mb-0">
+                                            typing
+                                            <span class="animate-typing">
+                                                <span class="dot"></span>
+                                                <span class="dot"></span>
+                                                <span class="dot"></span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="conversation-name">{{recieverUser.userName }}</div>
+                            </div>
+
+                        </div>
+                    </li>
+
+                </div>
+            </ul>
+            <!-- *************************************  start message with file start if file exist not image************************************* -->
+
+            <!-- *************************************end message with file start if file exist not image************************************* -->
+
+
+            <!-- <li class="right">
+                            <div class="conversation-list">
+                                <div class="chat-avatar">
+                                    <img src="assets/images/users/avatar-1.jpg" alt="">
+                                </div>
+    
+                                <div class="user-chat-content">
+                                    <div class="ctext-wrap">
+                                        <div class="ctext-wrap-content">
+                                            <p class="mb-0">
+                                                Wow that's great
+                                            </p>
+                                            <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span
+                                                    class="align-middle">10:06</span></p>
+                                        </div>
+                                        <div class="dropdown align-self-start">
+                                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                <i class="ri-more-2-fill"></i>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Copy <i
+                                                        class="ri-file-copy-line float-end text-muted"></i></a>
+                                                <a class="dropdown-item" href="#">Save <i
+                                                        class="ri-save-line float-end text-muted"></i></a>
+                                                <a class="dropdown-item" href="#">Forward <i
+                                                        class="ri-chat-forward-line float-end text-muted"></i></a>
+                                                <a class="dropdown-item" href="#">Delete <i
+                                                        class="ri-delete-bin-line float-end text-muted"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="conversation-name">Patricia Smith</div>
+                                </div>
+    
+                            </div>
+                        </li> -->
+
+            <!-- <li>
+                            <div class="conversation-list">
+                                <div class="chat-avatar">
+                                    <img src="assets/images/users/avatar-4.jpg" alt="">
+                                </div>
+    
+                                <div class="user-chat-content">
+                                    <div class="ctext-wrap">
+    
+                                        <div class="ctext-wrap-content">
+                                            <ul class="list-inline message-img  mb-0">
+                                                <li class="list-inline-item message-img-list me-2 ms-0">
+                                                    <div>
+                                                        <a class="popup-img d-inline-block m-1"
+                                                            href="assets/images/small/img-1.jpg" title="Project 1">
+                                                            <img src="assets/images/small/img-1.jpg" alt=""
+                                                                class="rounded border">
+                                                        </a>
+                                                    </div>
+                                                    <div class="message-img-link">
+                                                        <ul class="list-inline mb-0">
+                                                            <li class="list-inline-item">
+                                                                <a download="img-1.jpg" href="assets/images/small/img-1.jpg"
+                                                                    class="fw-medium">
+                                                                    <i class="ri-download-2-line"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="list-inline-item dropdown">
+                                                                <a class="dropdown-toggle" href="#" role="button"
+                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                    <i class="ri-more-fill"></i>
+                                                                </a>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">Copy <i
+                                                                            class="ri-file-copy-line float-end text-muted"></i></a>
+                                                                    <a class="dropdown-item" href="#">Save <i
+                                                                            class="ri-save-line float-end text-muted"></i></a>
+                                                                    <a class="dropdown-item" href="#">Forward <i
+                                                                            class="ri-chat-forward-line float-end text-muted"></i></a>
+                                                                    <a class="dropdown-item" href="#">Delete <i
+                                                                            class="ri-delete-bin-line float-end text-muted"></i></a>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+    
+                                                <li class="list-inline-item message-img-list">
+                                                    <div>
+                                                        <a class="popup-img d-inline-block m-1"
+                                                            href="assets/images/small/img-2.jpg" title="Project 2">
+                                                            <img src="assets/images/small/img-2.jpg" alt=""
+                                                                class="rounded border">
+                                                        </a>
+                                                    </div>
+                                                    <div class="message-img-link">
+                                                        <ul class="list-inline mb-0">
+                                                            <li class="list-inline-item">
+                                                                <a download="img-2.jpg" href="assets/images/small/img-2.jpg"
+                                                                    class="fw-medium">
+                                                                    <i class="ri-download-2-line"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="list-inline-item dropdown">
+                                                                <a class="dropdown-toggle" href="#" role="button"
+                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                    <i class="ri-more-fill"></i>
+                                                                </a>
+                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                    <a class="dropdown-item" href="#">Copy <i
+                                                                            class="ri-file-copy-line float-end text-muted"></i></a>
+                                                                    <a class="dropdown-item" href="#">Save <i
+                                                                            class="ri-save-line float-end text-muted"></i></a>
+                                                                    <a class="dropdown-item" href="#">Forward <i
+                                                                            class="ri-chat-forward-line float-end text-muted"></i></a>
+                                                                    <a class="dropdown-item" href="#">Delete <i
+                                                                            class="ri-delete-bin-line float-end text-muted"></i></a>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span
+                                                    class="align-middle">10:09</span></p>
+                                        </div>
+    
+                                        <div class="dropdown align-self-start">
+                                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                <i class="ri-more-2-fill"></i>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Copy <i
+                                                        class="ri-file-copy-line float-end text-muted"></i></a>
+                                                <a class="dropdown-item" href="#">Save <i
+                                                        class="ri-save-line float-end text-muted"></i></a>
+                                                <a class="dropdown-item" href="#">Forward <i
+                                                        class="ri-chat-forward-line float-end text-muted"></i></a>
+                                                <a class="dropdown-item" href="#">Delete <i
+                                                        class="ri-delete-bin-line float-end text-muted"></i></a>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+    
+                                    <div class="conversation-name">Doris Brown</div>
+                                </div>
+    
+                            </div>
+                        </li> -->
+            <!-- 
+                        <li class="right">
+                            <div class="conversation-list">
+                                <div class="chat-avatar">
+                                    <img src="assets/images/users/avatar-1.jpg" alt="">
+                                </div>
+    
+                                <div class="user-chat-content">
+                                    <div class="ctext-wrap">
+    
+                                        <div class="ctext-wrap-content">
+                                            <div class="card p-2 mb-2">
+                                                <div class="d-flex flex-wrap align-items-center attached-file">
+                                                    <div class="avatar-sm me-3 ms-0 attached-file-avatar">
+                                                        <div
+                                                            class="avatar-title bg-primary-subtle text-primary rounded font-size-20">
+                                                            <i class="ri-file-text-fill"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1 overflow-hidden">
+                                                        <div class="text-start">
+                                                            <h5 class="font-size-14 text-truncate mb-1">admin_v1.0.zip</h5>
+                                                            <p class="text-muted text-truncate font-size-13 mb-0">12.5 MB
+                                                            </p>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="ms-4 me-0">
+                                                        <div class="d-flex gap-2 font-size-20 d-flex align-items-start">
+                                                            <div>
+                                                                <a download="admin_v1.0.zip"
+                                                                    href="assets/images/small/admin_v1.0.zip"
+                                                                    class="fw-medium">
+                                                                    <i class="ri-download-2-line"></i>
+                                                                </a>
+                                                            </div>
+                                                            <div class="dropdown">
+                                                                <a class="dropdown-toggle text-muted" href="#" role="button"
+                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                    <i class="ri-more-fill"></i>
+                                                                </a>
+                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                    <a class="dropdown-item" href="#">Share <i
+                                                                            class="ri-share-line float-end text-muted"></i></a>
+                                                                    <a class="dropdown-item" href="#">Delete <i
+                                                                            class="ri-delete-bin-line float-end text-muted"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span
+                                                    class="align-middle">10:16</span></p>
+                                        </div>
+    
+                                        <div class="dropdown align-self-start">
+                                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                <i class="ri-more-2-fill"></i>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Copy <i
+                                                        class="ri-file-copy-line float-end text-muted"></i></a>
+                                                <a class="dropdown-item" href="#">Save <i
+                                                        class="ri-save-line float-end text-muted"></i></a>
+                                                <a class="dropdown-item" href="#">Forward <i
+                                                        class="ri-chat-forward-line float-end text-muted"></i></a>
+                                                <a class="dropdown-item" href="#">Delete <i
+                                                        class="ri-delete-bin-line float-end text-muted"></i></a>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+    
+                                    <div class="conversation-name">Patricia Smith</div>
+                                </div>
+    
+                            </div>
+                        </li> -->
+            <!-- 
+                         -->
+
+            </ul>
+
+        </div>
+        <!-- end chat conversation end -->
+
+        <!-- start chat input section -->
+        <div *ngIf="composedMessage.files.length!=0" class="row mt-2">
+            <div class="col">
+                <ul *ngFor="let fl of composedMessage.messageFiles; let i = index">
+                    <li>
+                        <span class="selected-file">{{ fl.fileName }}</span>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="chat-input-section p-3 p-lg-4 border-top mb-0">
+            
+            <form (ngSubmit)="sendMessageToUser()">
+                <div class="row g-0">
+                    <div class="col">
+                        <!-- Display selected file name -->
+
+                        <input type="text" name="message" (keyup)="sendTypingStatus()"
+                            [(ngModel)]="composedMessage.message"
+                            class="form-control form-control-lg bg-light border-light" placeholder="Enter Message...">
+                    </div>
+                    <div class="col-auto">
+                        <div class="chat-input-links ms-md-2 me-md-0">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Emoji">
+                                    <button type="button"
+                                        class="btn btn-link text-decoration-none font-size-16 btn-lg waves-effect">
+                                        <i class="ri-emotion-happy-line"></i>
+                                    </button>
+                                </li>
+                                <label class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Attach File">
+                                    <input type="file" style="display: none;" id="file" (change)="fileInput($event)" />
+                                    <button type="button" (click)="openFileInput()"
+                                        class="btn btn-link text-decoration-none font-size-16 btn-lg waves-effect">
+                                        <i class="ri-attachment-line"></i>
+                                    </button>
+                                </label>
+                                <li class="list-inline-item">
+                                    <button type="submit"
+                                        class="btn btn-primary font-size-16 btn-lg chat-send waves-effect waves-light">
+                                        <i class="ri-send-plane-2-fill"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+        <!-- end chat input section -->
+    </div>
+    <!-- end chat conversation section -->
+
+    <!-- start User profile detail sidebar -->
+    <div class="user-profile-sidebar">
+        <div class="px-3 px-lg-4 pt-3 pt-lg-4">
+            <div class="user-chat-nav text-end">
+                <button type="button" class="btn nav-btn" (click)="toggleProfile(false)" id="user-profile-hide">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center p-4 border-bottom">
+            <div class="mb-4">
+                <img [src]="recieverUser.profileName" class="rounded-circle avatar-lg img-thumbnail" alt="">
+            </div>
+
+            <h5 class="font-size-16 mb-1 text-truncate">{{recieverUser.userName}}</h5>
+            <p *ngIf="recieverUser.userStatus.isOnline" class="text-muted text-truncate mb-1"><i
+                    class="ri-record-circle-fill font-size-10 text-success me-1 ms-0"></i>Active</p>
+
+            <p *ngIf="!recieverUser.userStatus.isOnline" class="text-muted text-truncate mb-1"><i
+                    class="ri-record-circle-fill font-size-10 text-warning me-1 ms-0"></i>InActive</p>
+        </div>
+        <!-- End profile user -->
+
+        <!-- Start user-profile-desc -->
+        <div class="p-4 user-profile-desc" data-simplebar>
+            <div class="text-muted">
+                <p class="mb-4">{{recieverUser.about}}</p>
+            </div>
+
+            <div class="accordion" id="myprofile">
+
+                <div class="accordion-item card border mb-2">
+                    <div class="accordion-header" id="about3">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#aboutprofile" aria-expanded="true" aria-controls="aboutprofile">
+                            <h5 class="font-size-14 m-0">
+                                <i class="ri-user-2-line me-2 ms-0 align-middle d-inline-block"></i> About
+                            </h5>
+                        </button>
+                    </div>
+                    <div id="aboutprofile" class="accordion-collapse collapse show" aria-labelledby="about3"
+                        data-bs-parent="#myprofile">
+                        <div class="accordion-body">
+                            <div>
+                                <p class="text-muted mb-1">Name</p>
+                                <h5 class="font-size-14">{{recieverUser.userName}}</h5>
+                            </div>
+
+                            <div class="mt-4">
+                                <p class="text-muted mb-1">Email</p>
+                                <h5 class="font-size-14">{{recieverUser.email}}</h5>
+                            </div>
+
+                            <div class="mt-4">
+                                <p class="text-muted mb-1">Time</p>
+                                <h5 class="font-size-14">{{recieverUser.phoneNumber}}</h5>
+                            </div>
+
+                            <div class="mt-4">
+                                <p class="text-muted mb-1">Location</p>
+                                <h5 class="font-size-14 mb-0">{{recieverUser.location}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item card border">
+                    <div class="accordion-header" id="attachfile3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#attachprofile" aria-expanded="false" aria-controls="attachprofile">
+                            <h5 class="font-size-14 m-0">
+                                <i class="ri-attachment-line me-2 ms-0 align-middle d-inline-block"></i> Attached
+                                Files
+                            </h5>
+                        </button>
+                    </div>
+                    <div id="attachprofile" class="accordion-collapse collapse" aria-labelledby="attachfile3"
+                        data-bs-parent="#myprofile">
+                        <div class="accordion-body" id="myFileData"  *ngFor="let sharedFile of allMessageChatFiles">
+                            <div class="card p-2 border mb-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar-sm me-3 ms-0">
+                                        <div class="avatar-title bg-primary-subtle text-primary rounded font-size-20" *ngIf="!appserviceUser.getFileIconClass(sharedFile.fileName)">
+                                            <i class="ri-file-text-fill"></i>
+                                        </div>
+                                        <div class="avatar-title bg-primary-subtle text-primary rounded font-size-20" *ngIf="appserviceUser.getFileIconClass(sharedFile.fileName)">
+                                            <i class="ri-image-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="text-start">
+                                            <h5 class="font-size-14 mb-1">{{sharedFile.fileName}}</h5>
+                                            <p class="text-muted font-size-13 mb-0">{{sharedFile.fileSize|fileSize}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="ms-4 me-0">
+                                        <ul class="list-inline mb-0 font-size-18">
+                                            <li class="list-inline-item">
+                                                <a href="#" class="text-muted px-1">
+                                                    <i class="ri-download-2-line"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item dropdown">
+                                                <a class="dropdown-toggle text-muted px-1" href="#" role="button"
+                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <i class="ri-more-fill"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                           
+                        </div>
+                    </div>
+                </div>
+                <!-- end profile-user-accordion -->
+            </div>
+            <!-- end user-profile-desc -->
+        </div>
+        <!-- end User profile detail sidebar -->
+    </div>
+    <!--- end user profile detail sidebar -->
+
+    <!-- audiocall Modal -->
+    <div class="modal fade" id="audiocallModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center p-4">
+                        <div class="avatar-lg mx-auto mb-4">
+                            <img src="assets/images/users/avatar-4.jpg" alt="" class="img-thumbnail rounded-circle">
+                        </div>
+
+                        <h5 class="text-truncate">Doris Brown</h5>
+                        <p class="text-muted">Start Audio Call</p>
+
+                        <div class="mt-5">
+                            <ul class="list-inline mb-1">
+                                <li class="list-inline-item px-2 me-2 ms-0">
+                                    <button type="button" class="btn btn-danger avatar-sm rounded-circle"
+                                        data-bs-dismiss="modal">
+                                        <span class="avatar-title bg-transparent font-size-20">
+                                            <i class="ri-close-fill"></i>
+                                        </span>
+                                    </button>
+                                </li>
+                                <li class="list-inline-item px-2">
+                                    <button type="button" class="btn btn-success avatar-sm rounded-circle">
+                                        <span class="avatar-title bg-transparent font-size-20">
+                                            <i class="ri-phone-fill"></i>
+                                        </span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- audiocall Modal -->
+
+    <!-- videocall Modal -->
+    <div class="modal fade" id="videocallModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center p-4">
+                        <div class="avatar-lg mx-auto mb-4">
+                            <img src="assets/images/users/avatar-4.jpg" alt="" class="img-thumbnail rounded-circle">
+                        </div>
+
+                        <h5 class="text-truncate">Doris Brown</h5>
+                        <p class="text-muted mb-0">Start Video Call</p>
+
+                        <div class="mt-5">
+                            <ul class="list-inline mb-1">
+                                <li class="list-inline-item px-2 me-2 ms-0">
+                                    <button type="button" class="btn btn-danger avatar-sm rounded-circle"
+                                        data-bs-dismiss="modal">
+                                        <span class="avatar-title bg-transparent font-size-20">
+                                            <i class="ri-close-fill"></i>
+                                        </span>
+                                    </button>
+                                </li>
+                                <li class="list-inline-item px-2">
+                                    <button type="button" class="btn btn-success avatar-sm rounded-circle">
+                                        <span class="avatar-title bg-transparent font-size-20">
+                                            <i class="ri-vidicon-fill"></i>
+                                        </span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal -->
+
+</div>
+</div>
+
+
+<div class="modal fade" id="startConversation-exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="startConversation-exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-size-16" id="startConversation-exampleModalLabel">Start Chat</h5>
+                <button type="button" class="btn-close" id="add" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body p-4">
+                <!-- <form> -->
+                <div class="mb-3">
+                    <label for="addcontactemail-input" class="form-label">Search User</label>
+                    <input type="text" name="seachValue" class="form-control" id="addcontactemail-input"
+                        placeholder="search user by userName or email">
+                </div>
+
+                <!-- <div class="input-group m-b-30">
+                                    <input placeholder="Search a user to assign" (keyup)="searching()" [(ngModel)]="searchValue"
+                                        name="searchValue" class="form-control search-input" type="text">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-primary">Search</button>
+                                    </span>
+                                </div> -->
+                <!-- <ul class="list-unstyled chat-list chat-user-list">
+                                    <li *ngFor="let contactDetail of contactList">
+                                        <a
+                                            [routerLink]="['/gapshap', { outlets: {  convermain: ['conversation',contactDetail.id] } }]" >
+                                            <div class="d-flex" (click)="startConversation(contactDetail.email)" >
+                                                <div class="chat-user-img online align-self-center me-3 ms-0">
+                                                    <img [src]="contactDetail.profileName"
+                                                        class="rounded-circle avatar-xs" alt="">
+                                                    <span *ngIf="contactDetail.userStatus?contactDetail.userStatus.status===userStatus.ONLINE:false" class="user-status"></span>
+                                                </div>
+
+                                                <div class="flex-grow-1 overflow-hidden">
+                                                    <h5 class="text-truncate font-size-15 mb-1">{{contactDetail.userName}}</h5>
+                                                    <p class="chat-user-message text-truncate mb-0">{{contactDetail.bio}}</p>
+                                                </div>
+                                                <div class="font-size-11"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul> -->
+
+
+                <!-- </form> -->
+            </div>
+            <!-- <div class="modal-footer">
+                            <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Invite Contact</button>
+                        </div> -->
+        </div>
+    </div>
+</div>
+<!-- End Add contact Modal -->
+<!-- 
+            <div class="modal fade" id="addContact-exampleModal-location" tabindex="-1" role="dialog"
+ aria-labelledby="addContact-exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+     <div class="modal-content">
+         <div class="modal-header">
+            <div class="modal-body p-4"></div>
+            <div class="mb-3">
+                <label for="addcontactemail-input" class="form-label">Search User</label>
+                <input type="text" name="seachValue"  class="form-control" id="addcontactemail-input"
+                    placeholder="search user by userName or email">
+            </div>
+             <button type="button" class="btn-close" id="add" data-bs-dismiss="modal" aria-label="Close">
+             </button>
+         </div>
+         <div class="modal-body p-4">
+             
+             <form   >
+
+              
+                          
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >Save</button>
+                 </div>
+             </form>
+         </div>
+        
+     </div>
+ </div>
+</div>
+
+
+ -->
+<div class="modal fade" id="addContact-exampleModal-location" tabindex="-1" role="dialog"
+    aria-labelledby="startConversation-exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-size-16" id="addContact-exampleModal-location">Start Chat</h5>
+                <button type="button" class="btn-close" id="add" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body p-4">
+                <!-- <form> -->
+                <div class="mb-3">
+                    <label for="addcontactemail-input" class="form-label">Search User</label>
+                    <input type="text" name="seachValue" (keyup)="searching()" [(ngModel)]="searchValue"
+                        class="form-control" id="addcontactemail-input" placeholder="search user by userName or email">
+                </div>
+
+                <!-- <div class="input-group m-b-30">
+                                    <input placeholder="Search a user to assign" (keyup)="searching()" [(ngModel)]="searchValue"
+                                        name="searchValue" class="form-control search-input" type="text">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-primary">Search</button>
+                                    </span>
+                                </div> -->
+                <!-- <ul class="list-unstyled chat-list chat-user-list">
+                                    <li *ngFor="let contactDetail of contactList">
+                                        <a
+                                            [routerLink]="['/gapshap', { outlets: {  convermain: ['conversation',contactDetail.id] } }]" >
+                                            <div class="d-flex" (click)="startConversation(contactDetail.email)" >
+                                                <div class="chat-user-img online align-self-center me-3 ms-0">
+                                                    <img [src]="contactDetail.profileName"
+                                                        class="rounded-circle avatar-xs" alt="">
+                                                    <span *ngIf="contactDetail.userStatus?contactDetail.userStatus.status===userStatus.ONLINE:false" class="user-status"></span>
+                                                </div>
+
+                                                <div class="flex-grow-1 overflow-hidden">
+                                                    
+                                                        <a type="submit" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal"class="btn btn-light btn-sm"class="ri-edit-fill me-4 ms-0 align-middle"class="ri-pencil-fill" >.</a>
+                                                    
+                                                    <h5 class="text-truncate font-size-15 mb-1">{{contactDetail.userName}}</h5>
+                                                    <p class="chat-user-message text-truncate mb-0">{{contactDetail.bio}}</p>
+                                                </div>
+                                                <div class="font-size-11"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul> -->
+
+                <ul class="list-unstyled chat-list chat-user-list">
+                    <li *ngFor="let contactDetail of contactList">
+                        <a [routerLink]="['/gapshap', { outlets: {  convermain: ['conversation',contactDetail.id] } }]">
+                            <div class="d-flex position-relative" (click)="startConversation(contactDetail.email)">
+                                <div class="chat-user-img online align-self-center me-3 ms-0">
+                                    <img [src]="contactDetail.profileName" class="rounded-circle avatar-xs" alt="">
+                                    <span
+                                        *ngIf="contactDetail.userStatus ? contactDetail.userStatus.status === userStatus.ONLINE : false"
+                                        class="user-status"></span>
+                                </div>
+
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <h5 class="text-truncate font-size-15 mb-1" data-bs-dismiss="modal">
+                                        {{contactDetail.userName}}</h5>
+                                    <p class="chat-user-message text-truncate mb-0">{{contactDetail.bio}}</p>
+                                </div>
+
+                                <!-- Button in the right corner -->
+                                <button type="button"
+                                    class="btn btn-secondary rounded-circle position-absolute top-0 end-0 translate-middle"
+                                    style="border-radius: 50%;" (click)="sendMessageToUser()">
+                                    sent
+                                </button>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- </form> -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Add contact Modal -->
